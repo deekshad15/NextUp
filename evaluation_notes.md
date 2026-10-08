@@ -38,3 +38,50 @@
 - Remaining issue: submission time is 23:59, but timezone is null
   despite EDT being stated for the August 31 deadline.
 - Full accuracy and completeness have not yet been checked.
+
+## First Ground-Truth Comparison
+
+- All 17 labeled items matched exactly one AI entry.
+- Due dates matched in 17/17 items, including unresolved dates.
+- Due times matched in 16/17 items.
+- Timezones matched in 9/17 items, but all nine matches were
+  empty values. The AI missed all eight explicit EDT values.
+- Project 1's submission time should remain unresolved at the
+  item level; 23:59 belongs specifically to the August 31 option.
+- Candidate dates, source pages, labels, and weights remain unscored.
+- This syllabus was used to refine the prompt, so these results
+  do not measure performance on unseen syllabi.
+
+## Run After Timezone Prompt Update
+
+- Schema validation passed for 16 items.
+- Found 16 of 17 ground-truth items; omitted the questionnaire.
+- Among matched items: dates 16/16, times 16/16,
+  and timezones 15/16 matched.
+- Incorrectly assigned EDT to Project 1's presentation.
+- Quiz matching was updated to recognize the observed
+  "Quiz 1–4" titles alongside "Module 1–4".
+- Improved field accuracy came with reduced item coverage.
+- Other fields remain unscored.
+
+## TDM 101: First Test
+
+- Schema validation passed, but the response contained only
+  the Syllabus Quiz and Academic Integrity Quiz.
+- It omitted the 14 weekly projects and 3 Outside Event reflections.
+- The syllabus describes a usual project deadline of nine days
+  after Monday release, at 11:55 p.m. Eastern, with exceptions.
+- Missing exact dates should not cause assignments to be omitted.
+- Recurring work must be represented without inventing deadlines.
+
+## TDM 101: After Recurring-Work Prompt Update
+
+- Schema passed with 19 items, matching the expected count.
+- Inspected Weekly Project 1 and Outside Event Reflection 1;
+  both correctly leave exact dates unresolved.
+- Reflection 1 preserves the monthly requirement and the
+  within-one-week-of-attendance rule.
+- Project 1 preserves 23:55 but omits the structured timezone.
+- Its notes should explicitly preserve the nine-day interval,
+  deadline exceptions, and reference to the current schedule.
+- The other 17 entries have not yet been reviewed.

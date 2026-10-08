@@ -7,7 +7,7 @@ from syllabus_schema import SYLLABUS_SCHEMA
 path = (
     Path(__file__).parent
     / "syllabi"
-    / "ENTR200_ai_response.txt"
+    / "TDM101 Syllabus_ai_response.txt"
 )
 
 try:
