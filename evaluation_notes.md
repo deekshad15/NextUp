@@ -85,3 +85,17 @@
 - Its notes should explicitly preserve the nine-day interval,
   deadline exceptions, and reference to the current schedule.
 - The other 17 entries have not yet been reviewed.
+
+## TDM 101: Full Output Review
+
+- All 19 expected items are present: 2 quizzes, 14 projects,
+  and 3 reflections. No duplicate items or invented calendar dates.
+- All projects preserve the usual 23:55 deadline time.
+- All 14 project timezone fields are missing Eastern time.
+- Project notes omit the explicit nine-day interval, exceptions,
+  and reference to the current schedule.
+- Most project and reflection notes refer to another item.
+  Each item should preserve its own deadline rules.
+- Numbered projects are placeholders based on the stated count.
+- Source pages and grade weights remain unverified.
+- This review used the syllabus passages already checked.
