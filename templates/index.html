@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextUp | Student Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <a href="/" class="brand">
+    <img
+        src="{{ url_for('static', filename='nextup-logo.png') }}"
+        alt=""
+        class="brand-logo"
+    >
+    <span>NextUp</span>
+</a>
+        <p>Your coursework, organized.</p>
+    </header>
+
+    <main>
+        <h2>Start with your syllabus</h2>
+        <p>Upload a PDF, review the extracted assignments, and build your task list.</p>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="syllabus">Choose a syllabus PDF</label>
+    <input
+        type="file"
+        id="syllabus"
+        name="syllabus"
+        accept=".pdf"
+        required
+    >
+    <button type="submit">Extract assignments</button>
+</form>
+    </main>
+</body>
+</html>

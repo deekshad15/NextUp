@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Tasks | NextUp</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <a href="/" class="brand">
+            <img
+                src="{{ url_for('static', filename='nextup-logo.png') }}"
+                alt=""
+                class="brand-logo"
+            >
+            <span>NextUp</span>
+        </a>
+        <p>Your coursework, organized.</p>
+    </header>
+
+    <main class="review-page">
+        <a href="/" class="back-link">← Upload another syllabus</a>
+
+        <h2>Meet your task list.</h2>
+        <p>{{ filename }}</p>
+
+        <div class="summary">
+            <span><strong>{{ items|length }}</strong> tasks extracted</span>
+            <span><strong>{{ review_count }}</strong> need deadline review</span>
+        </div>
+
+        <p>
+            Check these suggestions against your syllabus.
+            You can edit the fields below, but changes are not saved yet.
+        </p>
+
+        {% for item in items %}
+        {% set needs_review = not item.due_date
+            or not item.due_time
+            or not item.timezone
+            or item.candidate_dates %}
+
+        <article class="task-card">
+            <div class="task-top">
+                <span class="task-type">
+                    {{ item.type }} · {{ item.event_kind }}
+                </span>
+                <span class="badge {{ 'warning' if needs_review else '' }}">
+                    {{ 'Needs review' if needs_review else 'Date extracted' }}
+                </span>
+            </div>
+
+            <label for="title-{{ loop.index }}">Task</label>
+            <input
+                id="title-{{ loop.index }}"
+                type="text"
+                value="{{ item.title }}"
+            >
+
+            <div class="task-fields">
+                <div>
+                    <label for="date-{{ loop.index }}">Due date</label>
+                    <input id="date-{{ loop.index }}" type="date"
+                           value="{{ item.due_date or '' }}">
+                </div>
+
+                <div>
+                    <label for="time-{{ loop.index }}">Time</label>
+                    <input id="time-{{ loop.index }}" type="time"
+                           value="{{ item.due_time or '' }}">
+                </div>
+
+                <div>
+                    <label for="zone-{{ loop.index }}">Timezone</label>
+                    <input id="zone-{{ loop.index }}" type="text"
+                           value="{{ item.timezone or '' }}"
+                           placeholder="Not specified">
+                </div>
+            </div>
+
+            {% if item.candidate_dates %}
+            <p class="candidate-note">
+                Possible dates: {{ item.candidate_dates|join(', ') }}.
+                Confirm which applies.
+            </p>
+            {% elif not item.due_date %}
+            <p class="candidate-note">No exact deadline identified.</p>
+            {% endif %}
+
+            <details>
+                <summary>View extracted notes and sources</summary>
+                <p>{{ item.notes or 'No additional notes.' }}</p>
+                <p>
+                    Source pages:
+                    {{ item.source_pages|join(', ') or 'Not provided' }}
+                </p>
+                <p>
+                    Grade weight:
+                    {% if item.grade_weight_percent is not none %}
+                        {{ item.grade_weight_percent }}%
+                    {% else %}
+                        Not specified
+                    {% endif %}
+                </p>
+            </details>
+        </article>
+        {% else %}
+        <p>No tasks were returned. Try another syllabus.</p>
+        {% endfor %}
+    </main>
+</body>
+</html>
